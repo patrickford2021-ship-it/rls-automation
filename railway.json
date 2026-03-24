@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd artifacts/api-server && npm install"
+    "buildCommand": "cd artifacts/api-server && npm install && npm run build"
   },
   "deploy": {
     "startCommand": "cd artifacts/api-server && node dist/index.js",
