@@ -1,19 +1,21 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "rls-automation",
+  "version": "1.0.0",
+  "description": "RLS Automation Hub — AI voice agent Sarah cold-calls local businesses via Twilio",
+  "main": "index.js",
   "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
-  },
-  "private": true,
-  "devDependencies": {
-    "prettier": "^3.8.1",
-    "typescript": "~5.9.2"
+    "start": "node index.js",
+    "dev": "node index.js"
   },
   "dependencies": {
-    "@replit/connectors-sdk": "^0.3.0"
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3",
+    "twilio": "^5.3.7",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
