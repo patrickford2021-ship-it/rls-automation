@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "RLS Automation Hub"
+version = "1.0.0"
+id = "artifacts/rls-dashboard"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25603
+
+[services.development]
+run = "pnpm --filter @workspace/rls-dashboard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/rls-dashboard", "run", "build" ]
+publicDir = "artifacts/rls-dashboard/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25603"
+BASE_PATH = "/"

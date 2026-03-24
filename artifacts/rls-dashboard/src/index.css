@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Terminal Dark Theme */
+  --color-background: hsl(0 0% 4%);
+  --color-foreground: hsl(0 0% 90%);
+  
+  --color-card: hsl(0 0% 7%);
+  --color-card-foreground: hsl(0 0% 90%);
+  --color-card-border: hsl(0 0% 15%);
+
+  --color-popover: hsl(0 0% 7%);
+  --color-popover-foreground: hsl(0 0% 90%);
+  --color-popover-border: hsl(0 0% 15%);
+
+  --color-primary: hsl(142 71% 45%); /* Neon Green */
+  --color-primary-foreground: hsl(0 0% 4%);
+  
+  --color-secondary: hsl(0 0% 12%);
+  --color-secondary-foreground: hsl(0 0% 90%);
+  
+  --color-muted: hsl(0 0% 12%);
+  --color-muted-foreground: hsl(0 0% 64%);
+  
+  --color-accent: hsl(142 71% 45% / 0.15);
+  --color-accent-foreground: hsl(142 71% 45%);
+  
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(0 0% 15%);
+  --color-input: hsl(0 0% 15%);
+  --color-ring: hsl(142 71% 45%);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+:root {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 90%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 90%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 90%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 64%;
+  --accent: 142 71% 45%;
+  --accent-foreground: 0 0% 4%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 142 71% 45%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  /* Custom Scrollbar for Terminal feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  .terminal-card {
+    @apply bg-card border border-border rounded-xl p-5 shadow-lg shadow-black/50 transition-all duration-300;
+  }
+  .terminal-card:hover {
+    @apply border-primary/30 shadow-primary/5;
+  }
+  .terminal-heading {
+    @apply font-mono text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2;
+  }
+  .terminal-value {
+    @apply font-mono text-3xl md:text-4xl font-bold text-primary tracking-tight;
+  }
+  .terminal-input {
+    @apply w-full bg-background border border-border rounded-lg text-foreground font-sans px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all;
+  }
+  .terminal-btn {
+    @apply inline-flex items-center justify-center font-mono text-xs font-bold uppercase tracking-widest px-4 py-2.5 rounded-lg transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .terminal-btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(74,222,128,0.4)];
+  }
+  .terminal-btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:border-primary/50 border border-transparent;
+  }
+  .terminal-btn-danger {
+    @apply bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20;
+  }
+  .log-container {
+    @apply bg-background border border-border rounded-lg p-3 font-mono text-xs h-[120px] overflow-y-auto flex flex-col gap-1 mt-4;
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(74, 222, 128, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(74, 222, 128, 0.6); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
