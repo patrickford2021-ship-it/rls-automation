@@ -1,0 +1,10 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "cd artifacts/api-server && npm install"
+  },
+  "deploy": {
+    "startCommand": "cd artifacts/api-server && node dist/index.js",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}

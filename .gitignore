@@ -56,6 +56,14 @@ Thumbs.db
 # Runtime data — generated at runtime, not source code
 artifacts/api-server/data/
 artifacts/api-server/audio/
+artifacts/audio/
+artifacts/data/
+
+# Compiled build output inside artifacts
+artifacts/*/dist/
+
+# Pasted assets (may contain secrets)
+attached_assets/
 
 # Logs
 *.log
